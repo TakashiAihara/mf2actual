@@ -117,10 +117,36 @@ tmp
 .claude
 
 # mf2actual 固有の機密・生成物
-# 個人の口座名・カテゴリ対応。実口座名が入るのでコミットしない
+#
+# このツールは家計の実データ (取引明細・Amazon の注文履歴) を扱う。
+# 個別に列挙すると必ず漏れるので、データ形式ごとデフォルトで拒否し、
+# サンプルだけを明示的に許可する。
+# 実際に repo 直下の tx-2026-07.json / Retail.OrderHistory.1.csv が
+# 素通りする状態だったので、この形に変えた。
+
+# 表形式データは一律で拒否
+*.csv
+*.tsv
+*.xlsx
+
+# 取引明細・突き合わせ結果
+tx-*.json
+tx*.json
+mf-*.json
+transactions*.json
+*-matched.json
+*OrderHistory*
+*Retail.Order*
+
+# 個人の口座名・カテゴリ対応。実口座名が入る
 mapping.json
-# Actual の budget キャッシュ
+
+# Actual の budget キャッシュ・作業ディレクトリ
 data/
-# ローカル state / log
 state/
 *.log
+
+# サンプルだけ通す
+!*.example.json
+!*.example.csv
+!mapping.example.json
